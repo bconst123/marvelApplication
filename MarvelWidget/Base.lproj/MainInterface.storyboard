@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="MarvelWidget" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2VU-Hr-tOc">
+                                <rect key="frame" x="246" y="2" width="120" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="UC3-K6-Kes"/>
+                                </constraints>
+                                <state key="normal" title="A.I.M."/>
+                                <connections>
+                                    <action selector="goToThirdCharacter:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="9pw-K7-vtm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrk-8n-aTV">
+                                <rect key="frame" x="2" y="2" width="120" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="yyC-xn-o8a"/>
+                                </constraints>
+                                <state key="normal" title="3-D Man"/>
+                                <connections>
+                                    <action selector="goToFirstCharacter:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="3De-Kc-0S1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yp2-Au-gH5">
+                                <rect key="frame" x="124" y="2" width="120" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="svP-Sj-GKh"/>
+                                </constraints>
+                                <state key="normal" title="A-Bomb (HAS)"/>
+                                <connections>
+                                    <action selector="goToSecondCharacter:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="qzg-1v-Klg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Yrk-8n-aTV" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" constant="2" id="H4c-9T-Iuc"/>
+                            <constraint firstItem="2VU-Hr-tOc" firstAttribute="leading" secondItem="yp2-Au-gH5" secondAttribute="trailing" constant="2" id="Ubp-og-SmU"/>
+                            <constraint firstItem="Yrk-8n-aTV" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" constant="2" id="avA-L3-b8g"/>
+                            <constraint firstItem="2VU-Hr-tOc" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" constant="2" id="lDV-hx-uT5"/>
+                            <constraint firstItem="yp2-Au-gH5" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" constant="2" id="lUF-7F-xG0"/>
+                            <constraint firstItem="yp2-Au-gH5" firstAttribute="leading" secondItem="Yrk-8n-aTV" secondAttribute="trailing" constant="2" id="sGL-l5-xU1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="37"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="82.03125"/>
+        </scene>
+    </scenes>
+</document>

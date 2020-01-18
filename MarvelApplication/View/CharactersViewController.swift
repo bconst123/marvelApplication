@@ -92,6 +92,7 @@ class CharactersViewController: UIViewController {
                         self.charactersCollectionView.reloadData()
                     }
                 }
+                UserDefaults.standard.setVolatileDomain(self.characterViewModel.widgetInfo, forName: "WidgetInfo")
             }
         }
     }

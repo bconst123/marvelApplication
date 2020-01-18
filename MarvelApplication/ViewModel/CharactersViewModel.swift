@@ -9,6 +9,7 @@
 class CharactersViewModel {
     var charactersArray = [CharacterModelFav]()
     var favoriteCharactersArray = [CharacterModel]()
+    var widgetInfo: [String:String] = [:]
     let urltocall = "https://gateway.marvel.com/v1/public/characters?apikey=a8a4ad0e84b9ad205e7e15bdcffc8452&ts=1&hash=30f18b83faa3f6ae053bae52d647a520&offset="
     let apiManager = ApiManager()
     
@@ -24,6 +25,11 @@ class CharactersViewModel {
                 completion()
                 return
             }
+            for (indexAux, aux) in responseData.data.results.enumerated() {
+                if(indexAux == 3) { break }
+                self.widgetInfo[String(aux.id)] = aux.name
+            }
+            
             for each in responseData.data.results {
                 var character: CharacterModelFav
                 if(self.favoriteCharactersArray.contains{ return $0.id == each.id }) {
@@ -60,7 +66,7 @@ class CharactersViewModel {
         cellView.fillupFavoriteStar()
         print(favoriteCharactersArray.count)
     }
-    
+
     func addRemoveFromFavoritesList(charCandidate: CharacterModelFav) {
         print("DetailViewController - CharCandidate - \(charCandidate.favorite)")
         if charCandidate.favorite == true {
