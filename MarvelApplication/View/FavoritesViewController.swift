@@ -12,13 +12,18 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
 
     
     @IBOutlet weak var favoriteCollectionView: UICollectionView!
-    var characterViewModel = CharactersViewModel()
-    var listFavoriteChar = [Int: CharacterModel]()
-    var viewModelHandler:(() -> [Int: CharacterModel])?
+    let characterViewModel = CharactersViewModel()
+    var listFavoriteChar: [CharacterModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         favoriteCollectionView.register(UINib(nibName: "CardCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "cardCell")
+//        listFavoriteChar = retrieveFromUserDefaults()
+//
+//        if(listFavoriteChar.isEmpty) {
+//            print("empty")
+//        }
+//        favoriteCollectionView.reloadData()
         
         // Do any additional setup after loading the view.
         //favoriteCollectionView.register(CardCollectionViewCell.self, forSupplementaryViewOfKind: "", withReuseIdentifier: "cardCell")
@@ -27,8 +32,19 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        listFavoriteChar = UserDefaults.standard.object([Int: CharacterModel].self, with: "Favorites")
-        //print(listFavoriteChar.count)
+        listFavoriteChar.removeAll()
+        listFavoriteChar = retrieveFromUserDefaults()
+        if(listFavoriteChar.isEmpty) {
+            print("empty")
+        }
+        favoriteCollectionView.reloadData()
+    }
+    
+    
+    func retrieveFromUserDefaults() -> [CharacterModel] {
+        print(" RETRIEVING ...")
+        let charFav: [CharacterModel] = UserDefaults.standard.structArrayData(CharacterModel.self, forKey: "id")
+        return charFav
     }
 
 
@@ -36,14 +52,15 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
 
 extension FavoritesViewController {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return listFavoriteChar.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as! CardCollectionViewCell
         //let character = self.characterViewModel.favoriteCharactersArray.index(forKey: indexPath.row)
         //cell.setup(viewModel: characterViewModel,image: character.thumbnail.path, imageExtension: character.thumbnail.thumbnailExtension, name: character.name, favorite: false, index: indexPath.row)
-        cell.setup(viewModel: characterViewModel, image: "http://x.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73", imageExtension: "jpg", name: "teste", favorite: true, index: indexPath.row)
+        cell.setup(viewModel: characterViewModel, image: listFavoriteChar[indexPath.row].thumbnail.path , imageExtension: listFavoriteChar[indexPath.row].thumbnail.thumbnailExtension, name: listFavoriteChar[indexPath.row].name, favorite: true, index: indexPath.row)
+        cell.disableButton()
         return cell
     }
     

@@ -22,7 +22,7 @@ class CharactersViewController: UIViewController, UICollectionViewDataSource, UI
     var isConnected = true
     private let refreshControl = UIRefreshControl()
     let detailsSegueIdentifier = "presentCharacterDetails"
-    let totalCharacters = 60 //TODO
+    let totalCharacters = 1493 //TODO
     
     
     let characterViewModel = CharactersViewModel()
@@ -36,6 +36,8 @@ class CharactersViewController: UIViewController, UICollectionViewDataSource, UI
         } else {
             charactersCollectionView.addSubview(refreshControl)
         }
+        
+        characterViewModel.favoriteCharactersArray = retrieveFromUserDefaults()
         
         monitor.pathUpdateHandler = { path in
             if path.status == .satisfied {
@@ -56,9 +58,9 @@ class CharactersViewController: UIViewController, UICollectionViewDataSource, UI
         //favc.viewModelHandler = {return self.characterViewModel.favoriteCharactersArray}
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-//        UserDefaults.standard.set(self.characterViewModel.favoriteCharactersArray, forKey: "Favorites")
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        saveInUserDefaults(charFav: self.characterViewModel.favoriteCharactersArray)
+//    }
     
     @objc private func refreshData(_ sender: Any) {
         callApi(startAt: 0)
@@ -80,6 +82,18 @@ class CharactersViewController: UIViewController, UICollectionViewDataSource, UI
                 }
             }
         }
+    }
+    
+    func saveInUserDefaults(charFav: [CharacterModel]) {
+        print(" SAVING INTO MEMORY ...")
+        let sortedArray = charFav.sorted(by: {(char1, char2) in return char1.name<char2.name})
+        UserDefaults.standard.setStructArray(sortedArray, forKey: "id")
+    }
+    
+    func retrieveFromUserDefaults() -> [CharacterModel] {
+        print(" RETRIEVING ...")
+        let charFav: [CharacterModel] = UserDefaults.standard.structArrayData(CharacterModel.self, forKey: "id")
+        return charFav
     }
     
 }
@@ -118,4 +132,33 @@ extension CharactersViewController {
     }
     
 
+}
+
+extension UserDefaults {
+    open func setStruct<T: Codable>(_ value: T?, forKey defaultName: String){
+        let data = try? JSONEncoder().encode(value)
+        set(data, forKey: defaultName)
+    }
+    
+    open func structData<T>(_ type: T.Type, forKey defaultName: String) -> T? where T : Decodable {
+        guard let encodedData = data(forKey: defaultName) else {
+            return nil
+        }
+        
+        return try! JSONDecoder().decode(type, from: encodedData)
+    }
+    
+    open func setStructArray<T: Codable>(_ value: [T], forKey defaultName: String){
+        let data = value.map { try? JSONEncoder().encode($0) }
+        
+        set(data, forKey: defaultName)
+    }
+    
+    open func structArrayData<T>(_ type: T.Type, forKey defaultName: String) -> [T] where T : Decodable {
+        guard let encodedData = array(forKey: defaultName) as? [Data] else {
+            return []
+        }
+        
+        return encodedData.map { try! JSONDecoder().decode(type, from: $0) }
+    }
 }

@@ -15,6 +15,7 @@ class CardCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var favoriteCharacter: UIButton!
     
     private var cardViewModel: CharactersViewModel?
+    private var characterVC = CharactersViewController()
     private var cellIndex: Int = 0
     public var isFavoriteCell: Bool = false
 
@@ -30,8 +31,10 @@ class CardCollectionViewCell: UICollectionViewCell {
         guard let url = URL(string: newString) else { return }
         self.imageCharacter.load(url: url)
         self.nameCharacter.text = name
-        if(favorite) {
+        if(favorite == true) {
             self.favoriteCharacter.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        } else {
+            self.favoriteCharacter.setImage(UIImage(systemName: "star"), for: .normal)
         }
         self.cellIndex = index
         self.cardViewModel = viewModel
@@ -44,6 +47,11 @@ class CardCollectionViewCell: UICollectionViewCell {
         } else {
             self.favoriteCharacter.setImage(UIImage(systemName: "star"), for: .normal)
         }
+        characterVC.saveInUserDefaults(charFav: cardViewModel?.favoriteCharactersArray ?? [])
+    }
+    
+    func disableButton(){
+        self.favoriteCharacter.isEnabled = false
     }
 }
 

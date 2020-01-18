@@ -26,8 +26,9 @@ class CharactersViewModel {
             }
             for each in responseData.data.results {
                 var character: CharacterModelFav
-                if(self.favoriteCharactersArray.contains{ $0.id == each.id }) {
+                if(self.favoriteCharactersArray.contains{ return $0.id == each.id }) {
                     character = CharacterModelFav(character: each, favorite: true)
+                    print("CAIU AQUI")
                 } else {
                     character = CharacterModelFav(character: each, favorite: false)
                 }
