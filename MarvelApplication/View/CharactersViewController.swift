@@ -13,7 +13,7 @@ protocol CharactersDelegate {
     func finishPassing(characterModel: CharacterModel)
 }
 
-class CharactersViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class CharactersViewController: UIViewController {
     
     
     @IBOutlet weak var charactersCollectionView: UICollectionView!
@@ -23,7 +23,15 @@ class CharactersViewController: UIViewController, UICollectionViewDataSource, UI
     private let refreshControl = UIRefreshControl()
     let detailsSegueIdentifier = "presentCharacterDetails"
     let totalCharacters = 1493 //TODO
+    var searchController = UISearchController(searchResultsController: nil)
+    var filteredChar: [CharacterModelFav] = []
     
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
     
     let characterViewModel = CharactersViewModel()
 
@@ -37,7 +45,15 @@ class CharactersViewController: UIViewController, UICollectionViewDataSource, UI
             charactersCollectionView.addSubview(refreshControl)
         }
         
+        // retrieving favorites from UserDefaults
         characterViewModel.favoriteCharactersArray = retrieveFromUserDefaults()
+        
+        // parameters for Search Bar
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Character"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
         
         monitor.pathUpdateHandler = { path in
             if path.status == .satisfied {
@@ -57,11 +73,7 @@ class CharactersViewController: UIViewController, UICollectionViewDataSource, UI
         //let favc = self.storyboard?.instantiateViewController(withIdentifier: "FavoritesViewController") as! FavoritesViewController
         //favc.viewModelHandler = {return self.characterViewModel.favoriteCharactersArray}
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        saveInUserDefaults(charFav: self.characterViewModel.favoriteCharactersArray)
-//    }
-    
+        
     @objc private func refreshData(_ sender: Any) {
         callApi(startAt: 0)
         print("refreshing data...");
@@ -96,18 +108,38 @@ class CharactersViewController: UIViewController, UICollectionViewDataSource, UI
         return charFav
     }
     
+    func filterContentForSearchText(_ searchText: String) {
+        filteredChar = self.characterViewModel.charactersArray.filter { (charcter: CharacterModelFav) -> Bool in
+            return charcter.character.name.lowercased().contains(searchText.lowercased())
+        }
+
+        DispatchQueue.main.async {
+            self.charactersCollectionView.reloadData()
+        }
+        
+    }
+    
 }
 
-extension CharactersViewController {
+extension CharactersViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if isFiltering {
+            return filteredChar.count
+        }
         return characterViewModel.charactersArray.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as! CardCollectionViewCell
-        let character = self.characterViewModel.charactersArray[indexPath.row].character
-        cell.setup(viewModel: characterViewModel,image: character.thumbnail.path, imageExtension: character.thumbnail.thumbnailExtension, name: character.name, favorite: self.characterViewModel.charactersArray[indexPath.row].favorite, index: indexPath.row)
+        var character: CharacterModelFav
+        if isFiltering {
+            character = filteredChar[indexPath.row]
+        } else {
+          character = self.characterViewModel.charactersArray[indexPath.row]
+        }
+        
+        cell.setup(viewModel: characterViewModel,image: character.character.thumbnail.path, imageExtension: character.character.thumbnail.thumbnailExtension, name: character.character.name, favorite: character.favorite, index: indexPath.row)
         
         return cell
     }
@@ -124,15 +156,29 @@ extension CharactersViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let charSelected: CharacterModelFav
+        if isFiltering {
+          charSelected = filteredChar[indexPath.row]
+        } else {
+          charSelected = self.characterViewModel.charactersArray[indexPath.row]
+        }
+        
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
         
-        vc.completionHandler = {return self.characterViewModel.charactersArray[indexPath.row]}
+        vc.completionHandler = {return charSelected}
         
         self.navigationController?.pushViewController(vc, animated:true)
     }
-    
-
 }
+
+
+extension CharactersViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
+  }
+}
+
 
 extension UserDefaults {
     open func setStruct<T: Codable>(_ value: T?, forKey defaultName: String){
