@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  MarvelApplication
 //
-//  Created by Bruno Augusto Constantino on 1/14/20.
+//  Created by Bruno Augusto Constantino on 1/18/20.
 //  Copyright © 2020 Bruno Augusto Constantino. All rights reserved.
 //
 
