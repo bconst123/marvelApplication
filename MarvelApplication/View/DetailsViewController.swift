@@ -8,10 +8,14 @@
 
 import UIKit
 
+protocol DetailsViewDelegate {
+    func addRemoveFavorite(data: CharacterModelFav)
+}
+
 class DetailsViewController: UIViewController {
     
     var characterDetailIndex: CharacterModelFav? = nil
-    
+    var delegate: DetailsViewDelegate?
     var completionHandler:(() -> CharacterModelFav)?
 
     @IBOutlet weak var charImage: UIImageView!
@@ -21,6 +25,19 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var favoriteButton: UIButton!
 
     @IBAction func addToFavorite(_ sender: Any) {
+        guard let aux = characterDetailIndex else { return }
+        var charFav = aux
+            if charFav.favorite == true {
+                charFav.favorite = false
+                self.favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+            } else {
+                charFav.favorite = true
+                self.favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            }
+            self.delegate?.addRemoveFavorite(data: charFav)
+            characterDetailIndex = charFav
+        
+        
         print("favorite")
     }
     

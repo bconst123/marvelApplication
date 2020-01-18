@@ -52,11 +52,47 @@ class CharactersViewModel {
             cellView.isFavoriteCell = false
         } else {
             charactersArray[index].favorite = true
-            favoriteCharactersArray.append(charactersArray[index].character)
+            if(!favoriteCharactersArray.contains{ return $0.id == charactersArray[index].character.id }) {
+                favoriteCharactersArray.append(charactersArray[index].character)
+            }
             cellView.isFavoriteCell = true
         }
         cellView.fillupFavoriteStar()
         print(favoriteCharactersArray.count)
+    }
+    
+    func addRemoveFromFavoritesList(charCandidate: CharacterModelFav) {
+        print("DetailViewController - CharCandidate - \(charCandidate.favorite)")
+        if charCandidate.favorite == true {
+            print("DetailViewController - ADDING NEW HERE - \(charCandidate.character.name)")
+            if(!favoriteCharactersArray.contains{ return $0.id == charCandidate.character.id }) {
+                favoriteCharactersArray.append(charCandidate.character)
+            }
+            for eachfav in favoriteCharactersArray {
+                if eachfav.id == charCandidate.character.id {
+                    for (indexChar,eachChar) in charactersArray.enumerated() {
+                        if(eachChar.character.id == charCandidate.character.id) {
+                            charactersArray[indexChar].favorite = true
+                            break
+                        }
+                    }
+                }
+            }
+            
+        } else {
+            for (indexFav, eachfav) in favoriteCharactersArray.enumerated() {
+                if eachfav.id == charCandidate.character.id {
+                    favoriteCharactersArray.remove(at: indexFav)
+                    for (indexChar,eachChar) in charactersArray.enumerated() {
+                        if(eachChar.character.id == charCandidate.character.id) {
+                            charactersArray[indexChar].favorite = false
+                            break
+                        }
+                    }
+                    print("DetailViewController - REMOVING NEW HERE - \(charCandidate.character.name)")
+                }
+            }
+        }
     }
     
 }

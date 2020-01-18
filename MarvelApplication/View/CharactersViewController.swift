@@ -121,6 +121,16 @@ class CharactersViewController: UIViewController {
     
 }
 
+extension CharactersViewController: DetailsViewDelegate {
+    func addRemoveFavorite(data: CharacterModelFav) {
+        characterViewModel.addRemoveFromFavoritesList(charCandidate: data)
+        self.saveInUserDefaults(charFav: self.characterViewModel.favoriteCharactersArray)
+        DispatchQueue.main.async {
+            self.charactersCollectionView.reloadData()
+        }
+    }
+}
+
 extension CharactersViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -164,7 +174,7 @@ extension CharactersViewController: UICollectionViewDataSource, UICollectionView
         }
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
-        
+        vc.delegate = self
         vc.completionHandler = {return charSelected}
         
         self.navigationController?.pushViewController(vc, animated:true)
