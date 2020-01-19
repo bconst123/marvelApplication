@@ -21,6 +21,7 @@
 		65233DE923D3FEF900406337 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65233DE823D3FEF900406337 /* EmptyListView.swift */; };
 		65233DEB23D40B0000406337 /* ComicsSeriesViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65233DEA23D40B0000406337 /* ComicsSeriesViewCell.xib */; };
 		65233DED23D40DB700406337 /* ComicsSeriesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65233DEC23D40DB700406337 /* ComicsSeriesViewCell.swift */; };
+		65233DEF23D480EB00406337 /* ToastVew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65233DEE23D480EB00406337 /* ToastVew.swift */; };
 		655E667123D2900F0093371D /* CardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655E667023D2900F0093371D /* CardCollectionViewCell.xib */; };
 		65DBA81B23CE89BA00D99F70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBA81A23CE89BA00D99F70 /* AppDelegate.swift */; };
 		65DBA81D23CE89BA00D99F70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBA81C23CE89BA00D99F70 /* SceneDelegate.swift */; };
@@ -89,6 +90,7 @@
 		65233DE823D3FEF900406337 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
 		65233DEA23D40B0000406337 /* ComicsSeriesViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicsSeriesViewCell.xib; sourceTree = "<group>"; };
 		65233DEC23D40DB700406337 /* ComicsSeriesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsSeriesViewCell.swift; sourceTree = "<group>"; };
+		65233DEE23D480EB00406337 /* ToastVew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastVew.swift; sourceTree = "<group>"; };
 		655E667023D2900F0093371D /* CardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCollectionViewCell.xib; sourceTree = "<group>"; };
 		65DBA81723CE89BA00D99F70 /* MarvelApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DBA81A23CE89BA00D99F70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				65DBA85623CEAD7600D99F70 /* DetailsViewController.swift */,
 				65DBA85223CEA54600D99F70 /* CharactersViewController.swift */,
 				65233DE823D3FEF900406337 /* EmptyListView.swift */,
+				65233DEE23D480EB00406337 /* ToastVew.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 			files = (
 				65DBA84F23CE8AF500D99F70 /* APIManager.swift in Sources */,
 				65DBA85523CEA57900D99F70 /* FavoritesViewController.swift in Sources */,
+				65233DEF23D480EB00406337 /* ToastVew.swift in Sources */,
 				65DBA85723CEAD7600D99F70 /* DetailsViewController.swift in Sources */,
 				65DBA85D23D00B7600D99F70 /* CharactersViewModel.swift in Sources */,
 				65233DE923D3FEF900406337 /* EmptyListView.swift in Sources */,

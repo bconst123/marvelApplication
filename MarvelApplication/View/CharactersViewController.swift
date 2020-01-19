@@ -62,12 +62,9 @@ class CharactersViewController: UIViewController {
                 self.isConnected = true
             } else {
                 print("No connection.")
-//                let alertController = UIAlertController(title: "System Alert", message:
-//                    "there is no internet connection", preferredStyle: .alert)
-//                alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
-//
-//                self.present(alertController, animated: true, completion: nil)
-                
+                DispatchQueue.main.async {
+                    ToastView.shared.long(self.view, txt_msg: "no internet connection")
+                }              
                 self.isConnected = false
             }
         }
