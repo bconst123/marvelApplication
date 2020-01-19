@@ -11,36 +11,55 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cardCell" id="gCO-oV-jJH" customClass="CardCollectionViewCell" customModule="MarvelApplication" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="180" height="300"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vL9-uQ-3jb">
-                <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
+                <rect key="frame" x="0.0" y="0.0" width="180" height="300"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="zzq-Xb-uot">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="207"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="zzq-Xb-uot">
+                        <rect key="frame" x="0.0" y="0.5" width="180" height="249"/>
                         <color key="tintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="250" id="GWj-BA-e6I"/>
+                            <constraint firstAttribute="width" constant="180" id="shA-nk-KzW"/>
+                        </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k2f-11-vvL">
-                        <rect key="frame" x="152" y="246" width="40" height="40"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k2f-11-vvL">
+                        <rect key="frame" x="130" y="250" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="5Gi-Py-yHV"/>
+                            <constraint firstAttribute="height" constant="40" id="FGV-7L-Hsc"/>
+                        </constraints>
                         <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" image="star" catalog="system">
                             <attributedString key="attributedTitle"/>
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                         </state>
                         <connections>
                             <action selector="addToFavorite:" destination="gCO-oV-jJH" eventType="touchUpInside" id="bYS-Av-gSG"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQC-Kt-pmq">
-                        <rect key="frame" x="8" y="256" width="142" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQC-Kt-pmq">
+                        <rect key="frame" x="10" y="261" width="110" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="110" id="uox-hI-j2o"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="zzq-Xb-uot" firstAttribute="leading" secondItem="vL9-uQ-3jb" secondAttribute="leading" id="0Ek-yS-kd9"/>
+                    <constraint firstItem="zzq-Xb-uot" firstAttribute="top" secondItem="vL9-uQ-3jb" secondAttribute="top" id="Qr7-j1-0A2"/>
+                    <constraint firstAttribute="trailing" secondItem="zzq-Xb-uot" secondAttribute="trailing" id="WL2-ct-HKD"/>
+                    <constraint firstItem="k2f-11-vvL" firstAttribute="leading" secondItem="UQC-Kt-pmq" secondAttribute="trailing" constant="10" id="XJH-Bt-7im"/>
+                    <constraint firstAttribute="trailing" secondItem="k2f-11-vvL" secondAttribute="trailing" constant="10" id="g9y-Ts-ewL"/>
+                    <constraint firstAttribute="bottom" secondItem="UQC-Kt-pmq" secondAttribute="bottom" constant="18" id="jQA-jG-cem"/>
+                    <constraint firstAttribute="bottom" secondItem="k2f-11-vvL" secondAttribute="bottom" constant="10" id="q6q-eb-mTr"/>
+                    <constraint firstItem="UQC-Kt-pmq" firstAttribute="leading" secondItem="vL9-uQ-3jb" secondAttribute="leading" constant="10" id="wpn-Hb-47j"/>
+                </constraints>
             </collectionViewCellContentView>
             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="Syt-1X-DXF"/>

@@ -46,7 +46,7 @@ class CharactersViewModel {
         }
     }
     
-    func didTapFavoriteButton(index: Int, cellView: CardCollectionViewCell) {
+    func didTapFavoriteButton(index: Int) {
         print("favorited \(index)")
         if(charactersArray[index].favorite){
             charactersArray[index].favorite = false
@@ -55,15 +55,12 @@ class CharactersViewModel {
                     favoriteCharactersArray.remove(at: indexFav)
                 }
             }
-            cellView.isFavoriteCell = false
         } else {
             charactersArray[index].favorite = true
             if(!favoriteCharactersArray.contains{ return $0.id == charactersArray[index].character.id }) {
                 favoriteCharactersArray.append(charactersArray[index].character)
             }
-            cellView.isFavoriteCell = true
         }
-        cellView.fillupFavoriteStar()
         print(favoriteCharactersArray.count)
     }
 

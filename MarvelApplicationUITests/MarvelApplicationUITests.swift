@@ -9,6 +9,21 @@
 import XCTest
 
 class MarvelApplicationUITests: XCTestCase {
+    
+    func testTakeScreenshots() {
+
+        do {sleep(10)}
+        // Take a screenshot of the current device's main screen.
+        let mainScreenScreenshot = XCUIScreen.main.screenshot()
+        
+        // Take a screenshot of an app's first window.
+        let app = XCUIApplication()
+        app.launch()
+        do {sleep(10)}
+        let windowScreenshot = app.windows.firstMatch.screenshot()
+
+    }
+    
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

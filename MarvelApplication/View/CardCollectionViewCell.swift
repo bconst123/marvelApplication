@@ -21,7 +21,13 @@ class CardCollectionViewCell: UICollectionViewCell {
 
     
     @IBAction func addToFavorite(_ sender: Any) {
-        cardViewModel?.didTapFavoriteButton(index: cellIndex, cellView: self)
+        cardViewModel?.didTapFavoriteButton(index: cellIndex)
+        if(self.isFavoriteCell == true) {
+            self.isFavoriteCell = false
+        } else {
+            self.isFavoriteCell = true
+        }
+        fillupFavoriteStar()
         // need to have index here
     }
     

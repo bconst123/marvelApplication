@@ -25,6 +25,7 @@ class CharactersViewController: UIViewController {
     let totalCharacters = 1493 //TODO
     var searchController = UISearchController(searchResultsController: nil)
     var filteredChar: [CharacterModelFav] = []
+    let viewEmpty = UINib(nibName: "EmptyListView", bundle: .main).instantiate(withOwner: nil, options: nil).first as! UIView
     
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
@@ -61,6 +62,12 @@ class CharactersViewController: UIViewController {
                 self.isConnected = true
             } else {
                 print("No connection.")
+//                let alertController = UIAlertController(title: "System Alert", message:
+//                    "there is no internet connection", preferredStyle: .alert)
+//                alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+//
+//                self.present(alertController, animated: true, completion: nil)
+                
                 self.isConnected = false
             }
         }
@@ -70,8 +77,6 @@ class CharactersViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         callApi(startAt: 0)
         
-        //let favc = self.storyboard?.instantiateViewController(withIdentifier: "FavoritesViewController") as! FavoritesViewController
-        //favc.viewModelHandler = {return self.characterViewModel.favoriteCharactersArray}
     }
         
     @objc private func refreshData(_ sender: Any) {
@@ -81,12 +86,13 @@ class CharactersViewController: UIViewController {
     }
     
     func callApi(startAt: Int) {
-        if(isConnected) {
             characterViewModel.fetchMarvelAPI(offset: startAt) {
                 if(self.characterViewModel.charactersArray.count == 0) {
                     //show empty list TODO
                     print("empty")
-                    //charactersCollectionView.
+                    DispatchQueue.main.async {
+                        self.charactersCollectionView.addSubview(self.viewEmpty)
+                    }
                 } else {
                     DispatchQueue.main.async {
                         self.charactersCollectionView.reloadData()
@@ -94,7 +100,6 @@ class CharactersViewController: UIViewController {
                 }
                 UserDefaults.standard.setVolatileDomain(self.characterViewModel.widgetInfo, forName: "WidgetInfo")
             }
-        }
     }
     
     func saveInUserDefaults(charFav: [CharacterModel]) {
@@ -142,6 +147,7 @@ extension CharactersViewController: UICollectionViewDataSource, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        self.viewEmpty.removeFromSuperview()
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as! CardCollectionViewCell
         var character: CharacterModelFav
         if isFiltering {
@@ -150,6 +156,7 @@ extension CharactersViewController: UICollectionViewDataSource, UICollectionView
           character = self.characterViewModel.charactersArray[indexPath.row]
         }
         
+        cell.imageCharacter.image = UIImage()
         cell.setup(viewModel: characterViewModel,image: character.character.thumbnail.path, imageExtension: character.character.thumbnail.thumbnailExtension, name: character.character.name, favorite: character.favorite, index: indexPath.row)
         
         return cell
@@ -166,6 +173,7 @@ extension CharactersViewController: UICollectionViewDataSource, UICollectionView
         }
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let charSelected: CharacterModelFav
         if isFiltering {
@@ -181,7 +189,6 @@ extension CharactersViewController: UICollectionViewDataSource, UICollectionView
         self.navigationController?.pushViewController(vc, animated:true)
     }
 }
-
 
 extension CharactersViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {

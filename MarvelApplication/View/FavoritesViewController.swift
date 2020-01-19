@@ -14,10 +14,12 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var favoriteCollectionView: UICollectionView!
     let characterViewModel = CharactersViewModel()
     var listFavoriteChar: [CharacterModel] = []
+    let viewEmpty = UINib(nibName: "EmptyListView", bundle: .main).instantiate(withOwner: nil, options: nil).first as! UIView
     
     override func viewDidLoad() {
         super.viewDidLoad()
         favoriteCollectionView.register(UINib(nibName: "CardCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "cardCell")
+        
 //        listFavoriteChar = retrieveFromUserDefaults()
 //
 //        if(listFavoriteChar.isEmpty) {
@@ -34,8 +36,13 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
     override func viewWillAppear(_ animated: Bool) {
         listFavoriteChar.removeAll()
         listFavoriteChar = retrieveFromUserDefaults()
+        
         if(listFavoriteChar.isEmpty) {
             print("empty")
+            view.frame = self.view.bounds
+            self.favoriteCollectionView.addSubview(viewEmpty)
+        } else {
+            self.favoriteCollectionView.willRemoveSubview(viewEmpty)
         }
         favoriteCollectionView.reloadData()
     }
@@ -56,9 +63,9 @@ extension FavoritesViewController {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        self.viewEmpty.removeFromSuperview()
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as! CardCollectionViewCell
-        //let character = self.characterViewModel.favoriteCharactersArray.index(forKey: indexPath.row)
-        //cell.setup(viewModel: characterViewModel,image: character.thumbnail.path, imageExtension: character.thumbnail.thumbnailExtension, name: character.name, favorite: false, index: indexPath.row)
+        cell.imageCharacter.image = UIImage()
         cell.setup(viewModel: characterViewModel, image: listFavoriteChar[indexPath.row].thumbnail.path , imageExtension: listFavoriteChar[indexPath.row].thumbnail.thumbnailExtension, name: listFavoriteChar[indexPath.row].name, favorite: true, index: indexPath.row)
         cell.disableButton()
         return cell
