@@ -14,12 +14,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.triangle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="zaP-la-VPZ">
-                    <rect key="frame" x="87" y="210" width="240" height="238"/>
+                    <rect key="frame" x="87" y="210" width="240" height="237.5"/>
                     <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="240" id="1dd-AH-gjR"/>
                         <constraint firstAttribute="height" constant="240" id="APd-Xx-6ou"/>
                     </constraints>
+                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="ultraLight"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your list is empty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZ9-n2-4FX">
                     <rect key="frame" x="99" y="430" width="216" height="36"/>

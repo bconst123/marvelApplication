@@ -34,7 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
-        print(url.host?.removingPercentEncoding)
+        print("Entrou no marvel app ...)")
+        
+        guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true), let path = components.path, let params = components.queryItems else { return false }
+        
+        if let index = params.first {
+                print("Entrou no marvel app com: \(index)")
+        }
+        
         
         return true
     }

@@ -52,9 +52,10 @@ class CharactersViewController: UIViewController {
         // parameters for Search Bar
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "Search Character"
         navigationItem.searchController = searchController
-        definesPresentationContext = true
+        //definesPresentationContext = true
         
         monitor.pathUpdateHandler = { path in
             if path.status == .satisfied {
@@ -110,18 +111,6 @@ class CharactersViewController: UIViewController {
         let charFav: [CharacterModel] = UserDefaults.standard.structArrayData(CharacterModel.self, forKey: "id")
         return charFav
     }
-    
-    func filterContentForSearchText(_ searchText: String) {
-        filteredChar = self.characterViewModel.charactersArray.filter { (charcter: CharacterModelFav) -> Bool in
-            return charcter.character.name.lowercased().contains(searchText.lowercased())
-        }
-
-        DispatchQueue.main.async {
-            self.charactersCollectionView.reloadData()
-        }
-        
-    }
-    
 }
 
 extension CharactersViewController: DetailsViewDelegate {
@@ -191,7 +180,16 @@ extension CharactersViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         filterContentForSearchText(searchBar.text!)
+        DispatchQueue.main.async {
+            self.charactersCollectionView.reloadData()
+        }
   }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        filteredChar = self.characterViewModel.charactersArray.filter { (charcter: CharacterModelFav) -> Bool in
+            return charcter.character.name.lowercased().contains(searchText.lowercased())
+        }
+    }
 }
 
 
