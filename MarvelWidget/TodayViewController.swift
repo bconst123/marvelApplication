@@ -14,6 +14,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         let result = UserDefaults.standard.dictionary(forKey: "WidgetInfo")
+        //get from UserDefault favorites
         if let result2 = result {
             for each in result2 {
                 print("\(each.key)  ::: \(each.value)")

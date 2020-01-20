@@ -24,7 +24,6 @@
 		65233DEF23D480EB00406337 /* ToastVew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65233DEE23D480EB00406337 /* ToastVew.swift */; };
 		655E667123D2900F0093371D /* CardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655E667023D2900F0093371D /* CardCollectionViewCell.xib */; };
 		65DBA81B23CE89BA00D99F70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBA81A23CE89BA00D99F70 /* AppDelegate.swift */; };
-		65DBA81D23CE89BA00D99F70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBA81C23CE89BA00D99F70 /* SceneDelegate.swift */; };
 		65DBA82223CE89BA00D99F70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65DBA82023CE89BA00D99F70 /* Main.storyboard */; };
 		65DBA82423CE89BC00D99F70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65DBA82323CE89BC00D99F70 /* Assets.xcassets */; };
 		65DBA82723CE89BC00D99F70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65DBA82523CE89BC00D99F70 /* LaunchScreen.storyboard */; };
@@ -94,7 +93,6 @@
 		655E667023D2900F0093371D /* CardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCollectionViewCell.xib; sourceTree = "<group>"; };
 		65DBA81723CE89BA00D99F70 /* MarvelApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DBA81A23CE89BA00D99F70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		65DBA81C23CE89BA00D99F70 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		65DBA82123CE89BA00D99F70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65DBA82323CE89BC00D99F70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65DBA82623CE89BC00D99F70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -210,7 +208,6 @@
 				65DBA84B23CE8AA800D99F70 /* View */,
 				65DBA84A23CE8AA100D99F70 /* Model */,
 				65DBA81A23CE89BA00D99F70 /* AppDelegate.swift */,
-				65DBA81C23CE89BA00D99F70 /* SceneDelegate.swift */,
 				65DBA82323CE89BC00D99F70 /* Assets.xcassets */,
 				65DBA82823CE89BC00D99F70 /* Info.plist */,
 			);
@@ -456,7 +453,6 @@
 				65DBA85323CEA54600D99F70 /* CharactersViewController.swift in Sources */,
 				65DBA81B23CE89BA00D99F70 /* AppDelegate.swift in Sources */,
 				65DBA85923CFD98D00D99F70 /* CardCollectionViewCell.swift in Sources */,
-				65DBA81D23CE89BA00D99F70 /* SceneDelegate.swift in Sources */,
 				65233DED23D40DB700406337 /* ComicsSeriesViewCell.swift in Sources */,
 				65DBA85123CE8CA600D99F70 /* MarvelModel.swift in Sources */,
 			);

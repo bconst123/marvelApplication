@@ -53,7 +53,7 @@
         <!--Characters-->
         <scene sceneID="ce4-yj-PIa">
             <objects>
-                <viewController id="jKD-EQ-eOG" customClass="CharactersViewController" customModule="MarvelApplication" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CharactersViewController" id="jKD-EQ-eOG" customClass="CharactersViewController" customModule="MarvelApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sxZ-84-u97">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -257,15 +257,19 @@
         <!--Characters-->
         <scene sceneID="PyR-Vb-x6B">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ecC-fH-RqJ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navViewController" automaticallyAdjustsScrollViewInsets="NO" id="ecC-fH-RqJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Characters" image="person.3" catalog="system" id="eb5-tE-u6c"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ads-cO-Xwg">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <outlet property="delegate" destination="ecC-fH-RqJ" id="cP8-KF-pb5"/>
+                        </connections>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
+                        <outlet property="delegate" destination="ads-cO-Xwg" id="nrK-3f-5s4"/>
                         <segue destination="jKD-EQ-eOG" kind="relationship" relationship="rootViewController" id="2nu-4I-zEE"/>
                     </connections>
                 </navigationController>

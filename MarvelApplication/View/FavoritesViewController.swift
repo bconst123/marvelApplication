@@ -19,18 +19,6 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         favoriteCollectionView.register(UINib(nibName: "CardCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "cardCell")
-        
-//        listFavoriteChar = retrieveFromUserDefaults()
-//
-//        if(listFavoriteChar.isEmpty) {
-//            print("empty")
-//        }
-//        favoriteCollectionView.reloadData()
-        
-        // Do any additional setup after loading the view.
-        //favoriteCollectionView.register(CardCollectionViewCell.self, forSupplementaryViewOfKind: "", withReuseIdentifier: "cardCell")
-        
-        //favoriteCollectionView.register(UINib.init(), forSupplementaryViewOfKind: "", withReuseIdentifier: "cardCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +26,6 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
         listFavoriteChar = retrieveFromUserDefaults()
         
         if(listFavoriteChar.isEmpty) {
-            print("empty")
             view.frame = self.view.bounds
             self.favoriteCollectionView.addSubview(viewEmpty)
         } else {
@@ -49,7 +36,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
     
     
     func retrieveFromUserDefaults() -> [CharacterModel] {
-        print(" RETRIEVING ...")
+        print(" RETRIEVING DATA FROM USERDEFAULTS...")
         let charFav: [CharacterModel] = UserDefaults.standard.structArrayData(CharacterModel.self, forKey: "id")
         return charFav
     }

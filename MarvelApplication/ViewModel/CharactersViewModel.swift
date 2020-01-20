@@ -34,7 +34,6 @@ class CharactersViewModel {
                 var character: CharacterModelFav
                 if(self.favoriteCharactersArray.contains{ return $0.id == each.id }) {
                     character = CharacterModelFav(character: each, favorite: true)
-                    print("CAIU AQUI")
                 } else {
                     character = CharacterModelFav(character: each, favorite: false)
                 }
@@ -47,7 +46,6 @@ class CharactersViewModel {
     }
     
     func didTapFavoriteButton(index: Int) {
-        print("favorited \(index)")
         if(charactersArray[index].favorite){
             charactersArray[index].favorite = false
             for (indexFav, eachfav) in favoriteCharactersArray.enumerated() {
@@ -61,13 +59,10 @@ class CharactersViewModel {
                 favoriteCharactersArray.append(charactersArray[index].character)
             }
         }
-        print(favoriteCharactersArray.count)
     }
 
     func addRemoveFromFavoritesList(charCandidate: CharacterModelFav) {
-        print("DetailViewController - CharCandidate - \(charCandidate.favorite)")
         if charCandidate.favorite == true {
-            print("DetailViewController - ADDING NEW HERE - \(charCandidate.character.name)")
             if(!favoriteCharactersArray.contains{ return $0.id == charCandidate.character.id }) {
                 favoriteCharactersArray.append(charCandidate.character)
             }
@@ -92,7 +87,6 @@ class CharactersViewModel {
                             break
                         }
                     }
-                    print("DetailViewController - REMOVING NEW HERE - \(charCandidate.character.name)")
                 }
             }
         }

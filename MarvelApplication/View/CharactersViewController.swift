@@ -52,7 +52,6 @@ class CharactersViewController: UIViewController {
         // parameters for Search Bar
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "Search Character"
         navigationItem.searchController = searchController
         //definesPresentationContext = true
@@ -86,8 +85,6 @@ class CharactersViewController: UIViewController {
     func callApi(startAt: Int) {
             characterViewModel.fetchMarvelAPI(offset: startAt) {
                 if(self.characterViewModel.charactersArray.count == 0) {
-                    //show empty list TODO
-                    print("empty")
                     DispatchQueue.main.async {
                         self.charactersCollectionView.addSubview(self.viewEmpty)
                     }
@@ -118,7 +115,7 @@ extension CharactersViewController: DetailsViewDelegate {
         characterViewModel.addRemoveFromFavoritesList(charCandidate: data)
         self.saveInUserDefaults(charFav: self.characterViewModel.favoriteCharactersArray)
         DispatchQueue.main.async {
-            self.charactersCollectionView.reloadData()
+            if((self.charactersCollectionView) != nil) { self.charactersCollectionView.reloadData() }
         }
     }
 }

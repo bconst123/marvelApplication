@@ -20,7 +20,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="UC3-K6-Kes"/>
                                 </constraints>
-                                <state key="normal" title="A.I.M."/>
+                                <state key="normal" title="Favorite 3"/>
                                 <connections>
                                     <action selector="goToThirdCharacter:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="9pw-K7-vtm"/>
                                 </connections>
@@ -30,7 +30,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="yyC-xn-o8a"/>
                                 </constraints>
-                                <state key="normal" title="3-D Man"/>
+                                <state key="normal" title="Favorite 1"/>
                                 <connections>
                                     <action selector="goToFirstCharacter:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="3De-Kc-0S1"/>
                                 </connections>
@@ -40,7 +40,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="svP-Sj-GKh"/>
                                 </constraints>
-                                <state key="normal" title="A-Bomb (HAS)"/>
+                                <state key="normal" title="Favorite 2"/>
                                 <connections>
                                     <action selector="goToSecondCharacter:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="qzg-1v-Klg"/>
                                 </connections>
